@@ -12,21 +12,28 @@ const handleSlider = (event) => {
   charCountEl.innerText = event;
 };
 
-const handleCheckbox = () => {
+const handleNumberCheckbox = () => {
   const numberEl = getElement("number");
-  const specialCharEl = getElement("special");
 
-  if (numberEl.checked === "true") {
-    charSet = "0123456789";
+  if (numberEl.checked === true) {
+    charSet += numberSet;
+    console.log(charSet);
   } else {
     charSet = charSet.replace(/0123456789/g, "");
+    console.log(charSet);
   }
-  if (specialCharEl.checked === "true") {
-    charSet += "!@#$%^&()";
+};
+
+const handleCharacterCheckbox = () => {
+  const specialCharEl = getElement("special");
+
+  if (specialCharEl.checked === true) {
+    charSet += specialCharSet;
+    console.log(charSet);
   } else {
     charSet = charSet.replace(/[^\w ]/g, "");
+    console.log(charSet);
   }
-  generatePassword();
 };
 
 const generatePassword = () => {
@@ -49,10 +56,10 @@ const handleViewPassword = () => {
 
   if (view.checked === true) {
     passwordEl.setAttribute("type", "text");
-    viewIcon.innerHTML = `<i class="fa-solid fa-eye-slash text-white"></i>`;
+    viewIcon.innerHTML = `<i class="fa-solid fa-eye text-white"></i>`;
   } else {
     passwordEl.setAttribute("type", "password");
-    viewIcon.innerHTML = `<i class="fa-solid fa-eye text-white"></i>`;
+    viewIcon.innerHTML = `<i class="fa-solid fa-eye-slash text-white"></i>`;
   }
 };
 
